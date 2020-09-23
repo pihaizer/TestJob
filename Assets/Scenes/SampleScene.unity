@@ -969,6 +969,22 @@ PrefabInstance:
       propertyPath: firstStonePosition.y
       value: 2.555
       objectReference: {fileID: 0}
+    - target: {fileID: 6201591763403373972, guid: 0dff9f9c2d1101b4baf4d171c571024e, type: 3}
+      propertyPath: numberOfStones.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201591763403373972, guid: 0dff9f9c2d1101b4baf4d171c571024e, type: 3}
+      propertyPath: numberOfStones.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201591763403373972, guid: 0dff9f9c2d1101b4baf4d171c571024e, type: 3}
+      propertyPath: tilesBetweenStones.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201591763403373972, guid: 0dff9f9c2d1101b4baf4d171c571024e, type: 3}
+      propertyPath: tilesBetweenStones.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6201591763403373973, guid: 0dff9f9c2d1101b4baf4d171c571024e, type: 3}
       propertyPath: m_Name
       value: GameController
