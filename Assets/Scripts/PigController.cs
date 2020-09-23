@@ -40,30 +40,11 @@ public class PigController : MonoBehaviour
     }
     private Vector2 CalculateBombPosition() {
         Vector3 position = new Vector2();
-        if(adjacentStones.Count > 2) {
-            foreach(var stone in adjacentStones) {
-                position += stone.transform.position;
-            }
-            position /= adjacentStones.Count;
-        } else {
-            Vector2Int offsetFromStone = GetOffsetFromStoneInTiles(adjacentStones[0]);
-            position = (Vector2)adjacentStones[0].transform.position + TilesToWorld(offsetFromStone);
+        foreach (var stone in adjacentStones) {
+            position += stone.transform.position;
         }
+        position /= adjacentStones.Count;
         return position;
-    }
-    private Vector2Int GetOffsetFromStoneInTiles(GameObject stone) {
-        Vector2Int offset = new Vector2Int();
-        float rawOffsetY = (transform.position.y - stone.transform.position.y);
-        offset.y = Mathf.RoundToInt(rawOffsetY);
-        offset.x = Mathf.RoundToInt(
-            (transform.position.x - stone.transform.position.x - Mathf.Tan(angleOfSlope) * rawOffsetY) 
-            / GameController.Instance.tileSize.x);
-        return offset;
-    }
-    private Vector2 TilesToWorld(Vector2Int tiles) {
-        Vector2 world = tiles * GameController.Instance.tileSize;
-        world.x += Mathf.Tan(angleOfSlope) * tiles.y;
-        return world;
     }
     public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Stone")) {

@@ -21,13 +21,16 @@ public class GameController : MonoBehaviour {
 
     private void PlaceStones() {
         GameObject stonesObject = new GameObject("Stones");
-        for (int i = 0; i < numberOfStones.x; i++) {
-            for (int j = 0; j < numberOfStones.y; j++) {
+        for (int i = -1; i <= numberOfStones.x; i++) {
+            for (int j = -1; j <= numberOfStones.y; j++) {
                 Vector2 stonePosition = firstStonePosition +
                     new Vector2(tileSize.x * Mathf.Sign(tilesBetweenStones.x) * (Mathf.Abs(tilesBetweenStones.x) + 1) * i
                     + Mathf.Sign(tilesBetweenStones.y) * (Mathf.Abs(tilesBetweenStones.y) + 1) * columnOffset * j, 
                     tileSize.y * Mathf.Sign(tilesBetweenStones.y) * (Mathf.Abs(tilesBetweenStones.y) + 1) * j);
-                Instantiate(stonePrefab, stonePosition, new Quaternion(), stonesObject.transform);
+                GameObject stone = Instantiate(stonePrefab, stonePosition, new Quaternion(), stonesObject.transform);
+                if(i == -1 || i == numberOfStones.x || j == -1 || j == numberOfStones.y) {
+                    stone.GetComponent<SpriteRenderer>().enabled = false;
+                }
             }
         }
     }
