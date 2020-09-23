@@ -2,3 +2,7 @@ Library/
 Temp/
 UserSettings/
 Logs/
+Plugins/
+obj/
+.vs/
+*.apk
