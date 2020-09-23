@@ -5,19 +5,28 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public Vector2Int numberOfStones;
     public Vector2 firstStonePosition;
-    public Vector2 distanceBetweenStones;
+    public Vector2Int tilesBetweenStones;
+    public Vector2 tileSize;
     public float columnOffset;
     public GameObject stonePrefab;
     void Start() {
+        if (Instance != null) {
+            Debug.LogError("Multiple Game Controllers");
+        }
+        Instance = this;
+
         PlaceStones();
     }
+    public static GameController Instance { get; private set; }
 
     private void PlaceStones() {
         GameObject stonesObject = new GameObject("Stones");
         for (int i = 0; i < numberOfStones.x; i++) {
             for (int j = 0; j < numberOfStones.y; j++) {
                 Vector2 stonePosition = firstStonePosition +
-                    new Vector2(distanceBetweenStones.x * i + columnOffset * j, distanceBetweenStones.y * j);
+                    new Vector2(tileSize.x * Mathf.Sign(tilesBetweenStones.x) * (Mathf.Abs(tilesBetweenStones.x) + 1) * i
+                    + Mathf.Sign(tilesBetweenStones.y) * (Mathf.Abs(tilesBetweenStones.y) + 1) * columnOffset * j, 
+                    tileSize.y * Mathf.Sign(tilesBetweenStones.y) * (Mathf.Abs(tilesBetweenStones.y) + 1) * j);
                 Instantiate(stonePrefab, stonePosition, new Quaternion(), stonesObject.transform);
             }
         }
